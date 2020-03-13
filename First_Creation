@@ -1,3 +1,4 @@
 First Creation
 New thing
-ffmpeg -i XXX.mp4 -c:v libx264 -c:a copy -f hls XXX.m3u8
+ffmpeg -y -i input.mp4 -vcodec copy -acodec copy -vbsf h264_mp4toannexb input.ts #transfer mp4 to ts
+ffmpeg -i input.ts  -c copy -map 0 -f segment -segment_list index.m3u8 -segment_time 10 video-%03d.ts #cut
